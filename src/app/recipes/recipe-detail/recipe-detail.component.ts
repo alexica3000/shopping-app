@@ -7,11 +7,16 @@ import {Recipe} from '../recipe.model';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
+  isDropdownOpen = false;
   @Input() recipe: Recipe;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toogleDropDownMenu(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
   }
 
 }

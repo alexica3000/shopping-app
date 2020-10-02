@@ -14,10 +14,13 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12"  #myTestDiv >
-    <div class="btn-group" appDropdown>
+  <div class="col-md-12">
+    <div class="btn-group" (click)="toogleDropDownMenu()">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Manage Recipe</button>
-      <div class="dropdown-menu">
+      <div
+        class="dropdown-menu"
+        [ngClass]="isDropdownOpen ? 'show' : ''"
+      >
         <a class="dropdown-item" href="#">Add ingredients to shopping list</a>
         <a class="dropdown-item" href="#">Edit Recipe</a>
         <a class="dropdown-item" href="#">Delete Recipe</a>
