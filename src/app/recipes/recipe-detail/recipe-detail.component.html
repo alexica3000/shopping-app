@@ -21,7 +21,7 @@
         class="dropdown-menu"
         [ngClass]="isDropdownOpen ? 'show' : ''"
       >
-        <a class="dropdown-item" href="#">Add ingredients to shopping list</a>
+        <a class="dropdown-item" (click)="onAddToShoppingList()" style="cursor:pointer;">Add ingredients to shopping list</a>
         <a class="dropdown-item" href="#">Edit Recipe</a>
         <a class="dropdown-item" href="#">Delete Recipe</a>
       </div>
