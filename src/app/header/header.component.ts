@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +7,6 @@ import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/c
 })
 export class HeaderComponent implements OnInit {
   isOpenDropdown = false;
-  @Output() featureSelected = new EventEmitter<string>();
 
   constructor() { }
 
@@ -17,9 +16,4 @@ export class HeaderComponent implements OnInit {
   toogleDropDown(): void {
     this.isOpenDropdown = !this.isOpenDropdown;
   }
-
-  onSelect(feature: string): void {
-    this.featureSelected.emit(feature);
-  }
-
 }
