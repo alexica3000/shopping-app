@@ -8,33 +8,7 @@ import {Subject} from 'rxjs';
 
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
-
-  private recipes: Recipe[] = [
-    new Recipe(
-      'Tasty Schnitzel',
-      'A super Schnitzel',
-      'https://cdn.pixabay.com/photo/2015/10/26/07/21/soup-1006694_960_720.jpg',
-      [
-        new Ingredient('Meat', 1),
-        new Ingredient('French Fries', 20)
-      ]),
-    new Recipe(
-      'Big Fat Burger',
-      'Description of Big Burger',
-      'https://cdn.pixabay.com/photo/2015/09/16/20/10/dough-943245_960_720.jpg',
-      [
-        new Ingredient('Buns', 2),
-        new Ingredient('Meat', 1)
-      ]),
-    new Recipe(
-      'Super Salad',
-      'Desc of Salad',
-      'https://cdn.pixabay.com/photo/2015/09/17/17/19/egg-944495_960_720.jpg',
-      [
-        new Ingredient('Tomatoes', 4),
-        new Ingredient('Cucumbers', 5)
-      ]),
-  ];
+  private recipes: Recipe[] = [];
 
   constructor(private slService: ShoppingListService) {}
 
