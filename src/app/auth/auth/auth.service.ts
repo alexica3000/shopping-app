@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import {FirebaseVariables} from '../../const';
 
 export interface AuthResponseData {
   idToken: string;
@@ -17,30 +18,27 @@ export interface AuthResponseData {
 })
 
 export class AuthService {
-  private apiKey = 'AIzaSyDGjXTyvY7034B4wLCPZCWoNXt2BchTk_w';
-  private baseUrlSignUp = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${this.apiKey}`;
-  private baseUrlSignIn = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${this.apiKey}`;
+  private errorMessage = 'An unknown error occured!';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private firebase: FirebaseVariables) {}
 
   signup(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(this.baseUrlSignUp, {email, password, returnSecureToken: true})
+    return this.http.post<AuthResponseData>(this.firebase.getBaseUrlSignUp(), {email, password, returnSecureToken: true})
       .pipe(catchError(errorResponse => {
-        let errorMessage = 'An unknown error occured!';
 
         if (!errorResponse.error || !errorResponse.error.error) {
-          return throwError(errorMessage);
+          return throwError(this.errorMessage);
         }
 
         switch (errorResponse.error.error.message) {
           case 'EMAIL_EXISTS':
-            errorMessage = 'This email exists already.';
+            this.errorMessage = 'This email exists already.';
         }
-        return throwError(errorMessage);
+        return throwError(this.errorMessage);
       }));
   }
 
   login(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(this.baseUrlSignIn, {email, password, returnSecureToken: true});
+    return this.http.post<AuthResponseData>(this.firebase.getBaseUrlSignIn(), {email, password, returnSecureToken: true});
   }
 }
