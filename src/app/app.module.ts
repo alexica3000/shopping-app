@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RecipeService} from './recipes/recipe.service';
 import { AuthComponent } from './auth/auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner/loading-spinner.component';
+import {DataStorage, FirebaseVariables} from './const';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
         HttpClientModule,
         ReactiveFormsModule
     ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, FirebaseVariables, DataStorage],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

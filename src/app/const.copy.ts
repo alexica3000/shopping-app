@@ -1,13 +1,21 @@
 export class FirebaseVariables {
   private apiKey = '';
-  private baseUrlSignUp = ``;
-  private baseUrlSignIn = ``;
+  private dataBaseUrlSignUp = ``;
+  private dataBaseUrlSignIn = ``;
 
-  getBaseUrlSignUp(): string {
-    return this.baseUrlSignUp;
+  get urlSignUp(): string {
+    return this.dataBaseUrlSignUp;
   }
 
-  getBaseUrlSignIn(): string {
-    return this.baseUrlSignIn;
+  get urlSignIn(): string {
+    return this.dataBaseUrlSignIn;
+  }
+}
+
+export class DataStorage {
+  private dataStorageUrl = '';
+
+  get storageUrl(): string {
+    return this.dataStorageUrl;
   }
 }
