@@ -2,7 +2,7 @@
  Front App, Shopping List (API, Angular, Firebase)
 
 ### Development server
-* Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+* run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 * create new const.ts file from const.copy.ts ang change all constants
 
 ### Build
