@@ -1,5 +1,5 @@
 ## ShoppingApp
- Front App, Shopping List (API, Angular, Firebase)
+ Front App, Shopping List (API, Angular, Firebase, Auth)
 
 ### Development server
 * run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
