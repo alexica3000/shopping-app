@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {RecipeService} from '../recipes/recipe.service';
 import {Recipe} from '../recipes/recipe.model';
 import {exhaustMap, map, take, tap} from 'rxjs/operators';
-import {AuthService} from '../auth/auth/auth.service';
+import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs';
 import {DataStorage} from '../const';
 

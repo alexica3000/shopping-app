@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
-import {FirebaseVariables} from '../../const';
+import {FirebaseVariables} from '../const';
 import {User} from './user.model';
 import {Router} from '@angular/router';
 
