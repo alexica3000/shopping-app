@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
-import {FirebaseVariables} from '../const';
 import {User} from './user.model';
 import {Router} from '@angular/router';
+import {firebaseData} from '../../environments/environment';
 
 export interface AuthResponseData {
   idToken: string;
@@ -23,17 +23,17 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private firebase: FirebaseVariables, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(this.firebase.urlSignUp, {email, password, returnSecureToken: true})
+    return this.http.post<AuthResponseData>(firebaseData.baseUrlSignUp, {email, password, returnSecureToken: true})
       .pipe(catchError(this.handleError), tap(resData => {
         this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
       }));
   }
 
   login(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(this.firebase.urlSignIn, {email, password, returnSecureToken: true})
+    return this.http.post<AuthResponseData>(firebaseData.baseUrlSignIn, {email, password, returnSecureToken: true})
       .pipe(catchError(this.handleError), tap(resData => {
         this.handleAuthentication(resData.email, resData.localId, resData.idToken, +resData.expiresIn);
       }));

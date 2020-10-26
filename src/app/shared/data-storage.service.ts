@@ -5,7 +5,7 @@ import {Recipe} from '../recipes/recipe.model';
 import {exhaustMap, map, take, tap} from 'rxjs/operators';
 import {AuthService} from '../auth/auth.service';
 import {Observable} from 'rxjs';
-import {DataStorage} from '../const';
+import {firebaseData} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,24 +13,18 @@ import {DataStorage} from '../const';
 
 export class DataStorageService {
 
-  constructor(
-    private http: HttpClient,
-    private recipesService: RecipeService,
-    private authService: AuthService,
-    private dataStorage: DataStorage) {
-
-  }
+  constructor(private http: HttpClient, private recipesService: RecipeService, private authService: AuthService) {}
 
   storeRecipes(): void {
     const recipes = this.recipesService.getRecipes();
-    this.http.put(this.dataStorage.storageUrl, recipes)
+    this.http.put(firebaseData.storageUrl, recipes)
       .subscribe(response => {
         console.log(response);
       });
   }
 
   fetchRecipes(): Observable<any> {
-    return this.http.get<Recipe[]>(this.dataStorage.storageUrl).pipe(map(recipes => {
+    return this.http.get<Recipe[]>(firebaseData.storageUrl).pipe(map(recipes => {
       return recipes.map(recipe => {
         return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
       });
