@@ -5,12 +5,14 @@ import {Subscription} from 'rxjs';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import {map} from 'rxjs/operators';
+import * as AuthActions from '../auth/store/auth.actions';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private userSub: Subscription;
@@ -46,7 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onLogout(): void {
-    this.authService.logout();
+    this.store.dispatch(new AuthActions.Logout());
   }
 
   ngOnDestroy(): void {
